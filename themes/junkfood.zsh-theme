@@ -1,10 +1,10 @@
 # Totally ripped off Dallas theme
 
 # Grab the current date (%W) and time (%t):
-JUNKFOOD_TIME_="%{$fg_bold[red]%}#%{$fg_bold[white]%}( %{$fg_bold[yellow]%}%W%{$reset_color%}@%{$fg_bold[white]%}%t )( %{$reset_color%}"
+JUNKFOOD_TIME_="%{$fg_bold[red]%}#%{$fg_bold[white]%} %{$fg_bold[yellow]%}%W%{$reset_color%} @%{$fg_bold[white]%}%t %{$reset_color%}"
 
 # Grab the current machine name 
-JUNKFOOD_MACHINE_="%{$fg_bold[blue]%}%m%{$fg[white]%} ):%{$reset_color%}"
+JUNKFOOD_MACHINE_="%{$fg_bold[blue]%}%m%{$fg[white]%} :%{$reset_color%}"
 
 # Grab the current username 
 JUNKFOOD_CURRENT_USER_="%{$fg_bold[green]%}%n%{$reset_color%}"
@@ -25,6 +25,17 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 # Add 3 cyan ✗s if this branch is diiirrrty! Dirty branch!
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✗✗✗"
 
+PR_PROMPT='%F➤ %f'
+
+CONDA_INFO='$(conda_prompt_info)'
+
+conda_prompt_info() {
+    if [ -n "$CONDA_DEFAULT_ENV" ]; then
+        echo "%{$fg_bold[green]%}($CONDA_DEFAULT_ENV)%{$reset_color%} "
+    fi
+}
+
 # Put it all together!
-PROMPT="$JUNKFOOD_TIME_$JUNKFOOD_CURRENT_USER_@$JUNKFOOD_MACHINE_$JUNKFOOD_LOCA_
-   "
+PROMPT="╭─ $JUNKFOOD_TIME_$JUNKFOOD_CURRENT_USER_@$JUNKFOOD_MACHINE_$JUNKFOOD_LOCA_ $CONDA_INFO%{$reset_color%} %{$fg_bold[white]%}%
+
+╰─$PR_PROMPT"
